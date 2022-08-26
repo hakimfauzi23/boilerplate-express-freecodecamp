@@ -8,6 +8,10 @@ app.get("/",function (req, res) {
   res.sendFile(indexPath);
 })
 
+app.get("/json", (req,res) => {
+  res.json({"message":"Hello json"});
+})
+
 
 
 
