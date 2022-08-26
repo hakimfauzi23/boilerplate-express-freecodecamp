@@ -1,16 +1,12 @@
 let express = require('express');
 let app = express();
-
-console.log("Hello World");
-
+app.use('/public',express.static("public"));
+// console.log("Hello World");
 app.get("/",function (req, res) {
   // res.send('Hello Express');
-
-  const absolutePath = __dirname + `/views/index.html`;
-  res.sendFile(absolutePath);
+  const indexPath = __dirname + `/views/index.html`;
+  res.sendFile(indexPath);
 })
-
-
 
 
 
