@@ -1,10 +1,13 @@
 let express = require('express');
 let app = express();
+const bodyParser = require('body-parser');
+
 app.use('/public',express.static("public"));
 app.use(function middleware(req,res,next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
-})
+});
+app.use(bodyParser.urlencoded({extended: false}));
 
 // console.log("Hello World");
 app.get("/",function (req, res) {
