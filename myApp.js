@@ -1,6 +1,11 @@
 let express = require('express');
 let app = express();
 app.use('/public',express.static("public"));
+app.use(function middleware(req,res,next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+})
+
 // console.log("Hello World");
 app.get("/",function (req, res) {
   // res.send('Hello Express');
@@ -9,7 +14,11 @@ app.get("/",function (req, res) {
 })
 
 app.get("/json", (req,res) => {
-  res.json({"message":"Hello json"});
+  if (process.env.MESSAGE_STYLE === 'uppercase') {
+    res.json({"message":"HELLO JSON"});  
+  } else {
+    res.json({"message":"Hello json"});  
+  }
 })
 
 
